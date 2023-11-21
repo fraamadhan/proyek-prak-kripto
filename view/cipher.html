@@ -9,6 +9,13 @@
 <body>
     <div class="card">
         <h1>Enkripsi Dekripsi Cipher</h1>
+        <h3>Select Cipher</h3>
+        <select id="cipherSelect">
+            <option value="affine">Affine</option>
+            <option value="rot13">ROT13</option>
+            <option value="affine_rot13">Affine <> ROT13</option>
+            <option value="rot13_affine">ROT13 <> Affine</option>
+        </select> <br><br>
 
         <h3>Your plain text</h3>
         <input type="text" name="input_text" id="input_text" size="25"> <br>
@@ -18,11 +25,11 @@
         <input type="number" name="inputA" id="inputA" placeholder="a key">
         <input type="number" name="inputB" id="inputB" placeholder="b key"><br><br>
 
-        <button id="encryptAffineCipherBtn">Encrypt</button>
-        <button id="decryptAffineCipherBtn">Decrypt</button>
+        <button id="encrypt">Encrypt</button>
+        <button id="decrypt">Decrypt</button>
 
         <p>Result is</p>
-        <p id="result-affine"></p>
+        <p id="result"></p>
     </div>
      
     <script type="text/javascript" src="../script/script.js"></script>

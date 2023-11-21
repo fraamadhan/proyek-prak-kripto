@@ -1,15 +1,11 @@
 let inputUser = document.getElementById("input_text");
 
-let resultDocAffine = document.getElementById("result-affine");
-const btnAffineCipherEncrypt = document.getElementById(
-  "encryptAffineCipherBtn"
-);
-const btnAffineCipherDecrypt = document.getElementById(
-  "decryptAffineCipherBtn"
-);
-btnAffineCipherEncrypt.addEventListener("click", affineCipherEncrypt);
-btnAffineCipherDecrypt.addEventListener("click", affineCipherDecrypt);
-
+let resultHtml = document.getElementById("result");
+const btnEncrypt = document.getElementById("encrypt");
+const btnDecrypt = document.getElementById("decrypt");
+btnEncrypt.addEventListener("click", handleCipherEncrypt);
+btnDecrypt.addEventListener("click", handleCipherDecrypt);
+const cipherSelect = document.getElementById("cipherSelect");
 
 const alphabet = [
   "a",
@@ -40,28 +36,76 @@ const alphabet = [
   "z",
 ];
 
-function affineCipherEncrypt() {
+function handleCipherEncrypt() {
+  let selectedCipher = cipherSelect.value;
   let keyA = Number(document.getElementById("inputA").value);
   let keyB = Number(document.getElementById("inputB").value);
   let input = inputUser.value;
-  if (keyA == "" && keyB == "") {
-    alert("Fill the key A and the key B");
-  }
-  let result = affineEncrypting(input, keyA, keyB);
 
-  resultDocAffine.innerHTML = result;
+  if (keyA === "" || keyB === "") {
+    alert("Fill the key A and the key B");
+    return;
+  }
+
+  let result;
+
+  switch (selectedCipher) {
+    case "affine":
+      result = affineEncrypting(input, keyA, keyB);
+      console.log(result);
+      break;
+    case "rot13":
+      result = rot13(input);
+      break;
+    case "affine_rot13":
+      result = affineEncrypting(rot13(input), keyA, keyB);
+      break;
+    case "rot13_affine":
+      result = rot13(affineEncrypting(input, keyA, keyB));
+      break;
+    default:
+      alert("Invalid cipher selection");
+      return;
+  }
+
+  resultHtml.innerHTML = result;
 }
 
-function affineCipherDecrypt() {
+function handleCipherDecrypt() {
+  console.log("masuk ke sini");
+  let selectedCipher = cipherSelect.value;
   let keyA = Number(document.getElementById("inputA").value);
   let keyB = Number(document.getElementById("inputB").value);
   let input = inputUser.value;
-  if (keyA == "" && keyB == "") {
-    alert("Fill the key A and the key B");
-  }
-  let result = affineDecrypting(input, keyA, keyB);
 
-  resultDocAffine.innerHTML = result;
+  if (keyA === "" || keyB === "") {
+    alert("Fill the key A and the key B");
+    return;
+  }
+
+  let result;
+
+  switch (selectedCipher) {
+    case "affine":
+      console.log("Masuk sini");
+      result = affineDecrypting(input, keyA, keyB);
+      console.log(result);
+      break;
+    case "rot13":
+      result = rot13(input);
+      break;
+    case "affine_rot13":
+      result = affineDecrypting(rot13(input), keyA, keyB);
+      break;
+    case "rot13_affine":
+      result = rot13(affineDecrypting(input, keyA, keyB));
+      break;
+    default:
+      alert("Invalid cipher selection");
+      return;
+  }
+
+  resultHtml.innerHTML = result;
 }
 
 function affineEncrypting(input, keyA, keyB) {
@@ -102,7 +146,6 @@ function findIndex(input) {
   let index = 0;
   for (let i = 0; i < alphabet.length; i++) {
     if (input.toLowerCase() === alphabet[i]) {
-      console.log(input);
       index = i;
       break;
     }
@@ -142,5 +185,5 @@ function modularInverse(a, m) {
     }
   }
   // If modular inverse doesn't exist, return -1
-  return -1; 
+  return -1;
 }
