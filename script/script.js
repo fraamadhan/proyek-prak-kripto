@@ -3,9 +3,14 @@ let inputUser = document.getElementById("input_text");
 let resultHtml = document.getElementById("result");
 const btnEncrypt = document.getElementById("encrypt");
 const btnDecrypt = document.getElementById("decrypt");
+const cipherSelect = document.getElementById("cipherSelect");
+const inputA = document.getElementById("inputA");
+const inputB = document.getElementById("inputB");
+const titleCipher = document.getElementById("title-cipher");
 btnEncrypt.addEventListener("click", handleCipherEncrypt);
 btnDecrypt.addEventListener("click", handleCipherDecrypt);
-const cipherSelect = document.getElementById("cipherSelect");
+cipherSelect.addEventListener("change", handleCipherSelect);
+
 
 const alphabet = [
   "a",
@@ -38,8 +43,8 @@ const alphabet = [
 
 function handleCipherEncrypt() {
   let selectedCipher = cipherSelect.value;
-  let keyA = Number(document.getElementById("inputA").value);
-  let keyB = Number(document.getElementById("inputB").value);
+  let keyA = Number(inputA.value);
+  let keyB = Number(inputB.value);
   let input = inputUser.value;
 
   if (keyA === "" || keyB === "") {
@@ -72,7 +77,6 @@ function handleCipherEncrypt() {
 }
 
 function handleCipherDecrypt() {
-  console.log("masuk ke sini");
   let selectedCipher = cipherSelect.value;
   let keyA = Number(document.getElementById("inputA").value);
   let keyB = Number(document.getElementById("inputB").value);
@@ -87,7 +91,6 @@ function handleCipherDecrypt() {
 
   switch (selectedCipher) {
     case "affine":
-      console.log("Masuk sini");
       result = affineDecrypting(input, keyA, keyB);
       console.log(result);
       break;
@@ -107,6 +110,24 @@ function handleCipherDecrypt() {
 
   resultHtml.innerHTML = result;
 }
+
+function handleCipherSelect() {
+  let selectedCipher = cipherSelect.value
+  if (selectedCipher === "rot13") {
+    inputA.disabled = true;
+    inputB.disabled = true;
+    titleCipher.innerHTML = "ROT13 Cipher";
+  } else if(selectedCipher === "affine"){
+      inputA.disabled = false;
+      inputB.disabled = false;
+      titleCipher.innerHTML = "Affine Cipher";
+  } else if(selectedCipher === "affine_rot13") {
+      titleCipher.innerHTML = "Affine then Rot 13";
+  } else if (selectedCipher === "rot13_affine") {
+      titleCipher.innerHTML ="Rot 13 then affine";
+  }
+}
+
 
 function affineEncrypting(input, keyA, keyB) {
   if (GCD(keyA, keyB) === 1) {
