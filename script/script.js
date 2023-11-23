@@ -11,7 +11,6 @@ btnEncrypt.addEventListener("click", handleCipherEncrypt);
 btnDecrypt.addEventListener("click", handleCipherDecrypt);
 cipherSelect.addEventListener("change", handleCipherSelect);
 
-
 const alphabet = [
   "a",
   "b",
@@ -112,22 +111,25 @@ function handleCipherDecrypt() {
 }
 
 function handleCipherSelect() {
-  let selectedCipher = cipherSelect.value
+  let selectedCipher = cipherSelect.value;
   if (selectedCipher === "rot13") {
     inputA.disabled = true;
     inputB.disabled = true;
     titleCipher.innerHTML = "ROT13 Cipher";
-  } else if(selectedCipher === "affine"){
-      inputA.disabled = false;
-      inputB.disabled = false;
-      titleCipher.innerHTML = "Affine Cipher";
-  } else if(selectedCipher === "affine_rot13") {
-      titleCipher.innerHTML = "Affine then Rot 13";
+  } else if (selectedCipher === "affine") {
+    inputA.disabled = false;
+    inputB.disabled = false;
+    titleCipher.innerHTML = "Affine Cipher";
+  } else if (selectedCipher === "affine_rot13") {
+    inputA.disabled = false;
+    inputB.disabled = false;
+    titleCipher.innerHTML = "Affine then Rot 13";
   } else if (selectedCipher === "rot13_affine") {
-      titleCipher.innerHTML ="Rot 13 then affine";
+    inputA.disabled = false;
+    inputB.disabled = false;
+    titleCipher.innerHTML = "Rot 13 then affine";
   }
 }
-
 
 function affineEncrypting(input, keyA, keyB) {
   if (GCD(keyA, keyB) === 1) {
@@ -161,6 +163,13 @@ function affineDecrypting(input, keyA, keyB) {
     }
   }
   return input;
+}
+
+function rot13(str) {
+  return str.replace(/[a-zA-Z]/g, function (char) {
+    let offset = char.toLowerCase() < "n" ? 13 : -13;
+    return String.fromCharCode(char.charCodeAt(0) + offset);
+  });
 }
 
 function findIndex(input) {
