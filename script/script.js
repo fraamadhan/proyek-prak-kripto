@@ -11,34 +11,6 @@ btnEncrypt.addEventListener("click", handleCipherEncrypt);
 btnDecrypt.addEventListener("click", handleCipherDecrypt);
 cipherSelect.addEventListener("change", handleCipherSelect);
 
-const alphabet = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-];
 
 function handleCipherEncrypt() {
   let selectedCipher = cipherSelect.value;
@@ -46,7 +18,7 @@ function handleCipherEncrypt() {
   let keyB = Number(inputB.value);
   let input = inputUser.value;
 
-  if (keyA === "" || keyB === "") {
+  if ((keyA === "" || keyB === "") && selectedCipher != "rot13") {
     alert("Fill the key A and the key B");
     return;
   }
@@ -56,7 +28,6 @@ function handleCipherEncrypt() {
   switch (selectedCipher) {
     case "affine":
       result = affineEncrypting(input, keyA, keyB);
-      console.log(result);
       break;
     case "rot13":
       result = rot13(input);
@@ -81,7 +52,7 @@ function handleCipherDecrypt() {
   let keyB = Number(document.getElementById("inputB").value);
   let input = inputUser.value;
 
-  if (keyA === "" || keyB === "") {
+  if ((keyA === "" || keyB === "") && selectedCipher != "rot13") {
     alert("Fill the key A and the key B");
     return;
   }
@@ -91,7 +62,6 @@ function handleCipherDecrypt() {
   switch (selectedCipher) {
     case "affine":
       result = affineDecrypting(input, keyA, keyB);
-      console.log(result);
       break;
     case "rot13":
       result = rot13(input);
@@ -129,91 +99,4 @@ function handleCipherSelect() {
     inputB.disabled = false;
     titleCipher.innerHTML = "Rot 13 then affine";
   }
-}
-
-function affineEncrypting(input, keyA, keyB) {
-  if (GCD(keyA, keyB) === 1) {
-    for (let i = 0; i < input.length; i++) {
-      if (input[i] !== " ") {
-        indexX = findIndex(input[i]);
-        encrypt = (keyA * indexX + keyB) % 26;
-        input = replaceCharAt(input, i, alphabet[encrypt]);
-      }
-    }
-  }
-  return input;
-}
-
-function affineDecrypting(input, keyA, keyB) {
-  const aInverse = modularInverse(keyA, 26);
-
-  if (aInverse === -1) {
-    alert("Invalid keyA. Modular inverse does not exist.");
-  }
-
-  if (GCD(keyA, keyB) === 1) {
-    for (let i = 0; i < input.length; i++) {
-      if (input[i] !== " ") {
-        indexX = findIndex(input[i]);
-        decrypt = (((aInverse * (indexX - keyB)) % 26) + 26) % 26;
-        // console.log('decrypt : ' + decrypt);
-        // console.log('alphabet : ' + alphabet[decrypt]);
-        input = replaceCharAt(input, i, alphabet[decrypt]);
-      }
-    }
-  }
-  return input;
-}
-
-function rot13(str) {
-  return str.replace(/[a-zA-Z]/g, function (char) {
-    let offset = char.toLowerCase() < "n" ? 13 : -13;
-    return String.fromCharCode(char.charCodeAt(0) + offset);
-  });
-}
-
-function findIndex(input) {
-  let index = 0;
-  for (let i = 0; i < alphabet.length; i++) {
-    if (input.toLowerCase() === alphabet[i]) {
-      index = i;
-      break;
-    }
-  }
-
-  return index;
-}
-
-function replaceCharAt(x, index, value) {
-  if (index > x.length - 1) {
-    return x;
-  }
-  return x.substring(0, index) + value + x.substring(index + 1);
-}
-
-function GCD(keyA, keyB) {
-  let remain;
-  let result;
-
-  remain = keyA % keyB;
-  keyA = keyB;
-  keyB = remain;
-
-  if (keyB == 0) {
-    result = keyA;
-  } else {
-    return GCD(keyA, keyB);
-  }
-
-  return result;
-}
-
-function modularInverse(a, m) {
-  for (let x = 1; x < m; x++) {
-    if ((a * x) % m === 1) {
-      return x;
-    }
-  }
-  // If modular inverse doesn't exist, return -1
-  return -1;
 }
