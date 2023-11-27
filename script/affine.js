@@ -52,8 +52,6 @@ function affineEncrypting(input, keyA, keyB) {
         if (input[i] !== " ") {
           indexX = findIndex(input[i]);
           decrypt = (((aInverse * (indexX - keyB)) % 26) + 26) % 26;
-          // console.log('decrypt : ' + decrypt);
-          // console.log('alphabet : ' + alphabet[decrypt]);
           input = replaceCharAt(input, i, alphabet[decrypt]);
         }
       }

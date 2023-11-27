@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="card">
-        <h1>Enkripsi Dekripsi Cipher</h1>
+        <h1>Encrypt Decrypt Cipher</h1>
         <h3>Select Cipher</h3>
         <select id="cipherSelect">
             <option value="affine">Affine</option>
@@ -21,7 +21,10 @@
         </select> <br><br>
 
         <h3>Your plain text</h3>
-        <input type="text" name="input_text" id="input_text" size="25"> <br>
+        <textarea name="input_text" id="input_text" cols="30" rows="10"></textarea>
+
+        <h3>Result is</h3>
+        <textarea name="result" id="result" cols="30" rows="10" disabled></textarea>
 
         <h3 id="title-cipher">Affine Cipher</h3>
 
@@ -31,8 +34,7 @@
         <button id="encrypt">Encrypt</button>
         <button id="decrypt">Decrypt</button>
 
-        <p>Result is</p>
-        <p id="result"></p>
+    
     </div>
      
 </body>

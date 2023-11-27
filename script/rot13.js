@@ -15,7 +15,9 @@ function rot13(str) {
     let result = '';
     for (let i = 0; i < str.length; i++) {
       let char = str[i];
+      console.log(char);
       result += charMap[char] || char;
+      console.log(result);
     }
   
     return result;
