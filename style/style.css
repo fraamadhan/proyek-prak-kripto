@@ -1,161 +1,152 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-
 .card {
-    background-color: #c4bbbb;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 100px;
-    padding: 100px;
-    text-align: center;
-
+  background-color: #c4bbbb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 20px; 
+  padding: 40px; 
+  text-align: center;
 }
 
 h1, h3, p {
-    color: #d6d6d6;
+  color: #070707;
 }
 
 h3 {
-    color: #090909;
+  color: #090909;
 }
 
-input, textarea {
-    padding: 8px;
-    margin: 5px;
-    width: 100%;
-    box-sizing: border-box; 
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    background: #ffffff;
+input, textarea, select {
+  padding: 12px; 
+  margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px; 
+  background: #ffffff;
+}
+
+#inputA, #inputB {
+  display: inline-block;
+  width: calc(50% - 5px);
+  margin-right: 10px;
+}
+
+#inputB {
+  margin-right: 0;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px; 
 }
 
 textarea {
-    height: 100px; 
-    resize: vertical; 
+  height: 120px; 
+  resize: vertical;
 }
 
-#input_text,
-#result-label,
-#result {
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 10px;
-}
-
-select {
-    padding: 12px;
-    font-size: 16px; 
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-
-/* Gaya lainnya tetap sama */
-
-/* Gaya tombol */
 button {
-    padding: 12px 24px;
-    margin: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 8px;
+  padding: 14px 28px; 
+  margin: 10px;
+  font-size: 20px; 
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
-body {
-    --s: 25vmin;
-    --p: calc(var(--s) / 2);
-    --c1: rgb(9, 186, 59);
-    --c2: dodgerblue;
-    --c3: rgb(173, 26, 26);
-    --bg: var(--c3);
-    --d: 4000ms;
-    --e: cubic-bezier(0.76, 0, 0.24, 1);
-    
-    background-color: var(--bg);
-    background-image:
-      linear-gradient(45deg, var(--c1) 25%, transparent 25%),
-      linear-gradient(-45deg, var(--c1) 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, var(--c2) 75%),
-      linear-gradient(-45deg, transparent 75%, var(--c2) 75%);
-    background-size: var(--s) var(--s);
-    background-position: 
-      calc(var(--p) *  1) calc(var(--p) *  0), 
-      calc(var(--p) * -1) calc(var(--p) *  1), 
-      calc(var(--p) *  1) calc(var(--p) * -1), 
-      calc(var(--p) * -1) calc(var(--p) *  0);
-    animation: 
-      color var(--d) var(--e) infinite,
-      position var(--d) var(--e) infinite;
-  }
-  
-  @keyframes color {
-    0%, 25% {
-      --bg: var(--c3);
-    }
-    26%, 50% {
-      --bg: var(--c1);
-    }
-    51%, 75% {
-      --bg: var(--c3);
-    }
-    76%, 100% {
-      --bg: var(--c2);
-    }
-  }
-  
-  @keyframes position {
-    0% {
-      background-position: 
-        calc(var(--p) *  1) calc(var(--p) *  0), 
-        calc(var(--p) * -1) calc(var(--p) *  1), 
-        calc(var(--p) *  1) calc(var(--p) * -1), 
-        calc(var(--p) * -1) calc(var(--p) *  0);
-    }
-    25% {
-      background-position: 
-        calc(var(--p) *  1) calc(var(--p) *  4), 
-        calc(var(--p) * -1) calc(var(--p) *  5), 
-        calc(var(--p) *  1) calc(var(--p) *  3), 
-        calc(var(--p) * -1) calc(var(--p) *  4);
-    }
-    50% {
-      background-position: 
-        calc(var(--p) *  3) calc(var(--p) * 8), 
-        calc(var(--p) * -3) calc(var(--p) * 9), 
-        calc(var(--p) *  2) calc(var(--p) * 7), 
-        calc(var(--p) * -2) calc(var(--p) * 8);
-    }
-    75% {
-      background-position: 
-        calc(var(--p) *  3) calc(var(--p) * 12), 
-        calc(var(--p) * -3) calc(var(--p) * 13), 
-        calc(var(--p) *  2) calc(var(--p) * 11), 
-        calc(var(--p) * -2) calc(var(--p) * 12);
-    }
-    100% {    
-      background-position: 
-        calc(var(--p) *  5) calc(var(--p) * 16), 
-        calc(var(--p) * -5) calc(var(--p) * 17), 
-        calc(var(--p) *  5) calc(var(--p) * 15), 
-        calc(var(--p) * -5) calc(var(--p) * 16);
-    }
-  }
-  
-  @media (prefers-reduced-motion) {
-    body {
-      animation: none;
-    }
-  }
 
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  --s: 25vmin;
+  --p: calc(var(--s) / 2);
+  --c1: rgb(9, 186, 59);
+  --c2: dodgerblue;
+  --c3: rgb(173, 26, 26);
+  --bg: var(--c3);
+  --d: 4000ms;
+  --e: cubic-bezier(0.76, 0, 0.24, 1);
+
+  background-color: var(--bg);
+  background-image: linear-gradient(45deg, var(--c1) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--c1) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--c2) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--c2) 75%);
+  background-size: var(--s) var(--s);
+  background-position: calc(var(--p) * 1) calc(var(--p) * 0),
+    calc(var(--p) * -1) calc(var(--p) * 1),
+    calc(var(--p) * 1) calc(var(--p) * -1),
+    calc(var(--p) * -1) calc(var(--p) * 0);
+  animation: color var(--d) var(--e) infinite,
+    position var(--d) var(--e) infinite;
+}
+
+@keyframes color {
+  0%,
+  25% {
+    --bg: var(--c3);
+  }
+  26%,
+  50% {
+    --bg: var(--c1);
+  }
+  51%,
+  75% {
+    --bg: var(--c3);
+  }
+  76%,
+  100% {
+    --bg: var(--c2);
+  }
+}
+
+@keyframes position {
+  0% {
+    background-position: calc(var(--p) * 1) calc(var(--p) * 0),
+      calc(var(--p) * -1) calc(var(--p) * 1),
+      calc(var(--p) * 1) calc(var(--p) * -1),
+      calc(var(--p) * -1) calc(var(--p) * 0);
+  }
+  25% {
+    background-position: calc(var(--p) * 1) calc(var(--p) * 4),
+      calc(var(--p) * -1) calc(var(--p) * 5),
+      calc(var(--p) * 1) calc(var(--p) * 3),
+      calc(var(--p) * -1) calc(var(--p) * 4);
+  }
+  50% {
+    background-position: calc(var(--p) * 3) calc(var(--p) * 8),
+      calc(var(--p) * -3) calc(var(--p) * 9),
+      calc(var(--p) * 2) calc(var(--p) * 7),
+      calc(var(--p) * -2) calc(var(--p) * 8);
+  }
+  75% {
+    background-position: calc(var(--p) * 3) calc(var(--p) * 12),
+      calc(var(--p) * -3) calc(var(--p) * 13),
+      calc(var(--p) * 2) calc(var(--p) * 11),
+      calc(var(--p) * -2) calc(var(--p) * 12);
+  }
+  100% {
+    background-position: calc(var(--p) * 5) calc(var(--p) * 16),
+      calc(var(--p) * -5) calc(var(--p) * 17),
+      calc(var(--p) * 5) calc(var(--p) * 15),
+      calc(var(--p) * -5) calc(var(--p) * 16);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  body {
+    animation: none;
+  }
+}

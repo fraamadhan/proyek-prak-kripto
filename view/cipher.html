@@ -29,17 +29,14 @@
         rows="10"
       ></textarea>
       <label for="file">Txt File</label>
-      <input id="file" name="file" type="file" onchange="readText(event)"/>
+      <input id="file" name="file" type="file" onchange="readText(event)" />
 
       <h3 id="title-cipher">Affine Cipher</h3>
 
-      <input type="number" name="inputA" id="inputA" placeholder="a key" />
-      <input
-        type="number"
-        name="inputB"
-        id="inputB"
-        placeholder="b key"
-      />
+      <div class="input-container">
+        <input type="number" name="inputA" id="inputA" placeholder="a key" />
+        <input type="number" name="inputB" id="inputB" placeholder="b key" />
+      </div>
 
       <h3>Result is</h3>
       <textarea
@@ -58,7 +55,7 @@
       async function readText(event) {
         const file = event.target.files.item(0);
         const text = await file.text();
-        console.log(text)
+        console.log(text);
         document.getElementById("input_text").value = text;
       }
     </script>
