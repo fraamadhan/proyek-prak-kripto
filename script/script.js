@@ -4,13 +4,13 @@ let resultHtml = document.getElementById("result");
 const btnEncrypt = document.getElementById("encrypt");
 const btnDecrypt = document.getElementById("decrypt");
 const cipherSelect = document.getElementById("cipherSelect");
+const btnUpload = document.getElementById("btn_upload");
 const inputA = document.getElementById("inputA");
 const inputB = document.getElementById("inputB");
 const titleCipher = document.getElementById("title-cipher");
 btnEncrypt.addEventListener("click", handleCipherEncrypt);
 btnDecrypt.addEventListener("click", handleCipherDecrypt);
 cipherSelect.addEventListener("change", handleCipherSelect);
-
 
 function handleCipherEncrypt() {
   let selectedCipher = cipherSelect.value;
@@ -100,3 +100,4 @@ function handleCipherSelect() {
     titleCipher.innerHTML = "Rot 13 then affine";
   }
 }
+

@@ -1,41 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/style.css" />
     <script type="text/javascript" src="../script/affine.js" defer></script>
     <script type="text/javascript" src="../script/rot13.js" defer></script>
     <script type="text/javascript" src="../script/script.js" defer></script>
     <title>Cipher Converter</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="card">
-        <h1>Encrypt Decrypt Cipher</h1>
-        <h3>Select Cipher</h3>
-        <select id="cipherSelect">
-            <option value="affine">Affine</option>
-            <option value="rot13">ROT13</option>
-            <option value="affine_rot13">Affine <> ROT13</option>
-            <option value="rot13_affine">ROT13 <> Affine</option>
-        </select> <br><br>
+      <h1>Encrypt Decrypt Cipher</h1>
+      <h3>Select Cipher</h3>
+      <select id="cipherSelect">
+        <option value="affine">Affine</option>
+        <option value="rot13">ROT13</option>
+        <option value="affine_rot13">Affine <> ROT13</option>
+        <option value="rot13_affine">ROT13 <> Affine</option>
+      </select>
+      <br /><br />
 
-        <h3>Your plain text</h3>
-        <textarea name="input_text" id="input_text" cols="30" rows="10"></textarea>
+      <h3>Your plain text</h3>
+      <textarea
+        name="input_text"
+        id="input_text"
+        cols="30"
+        rows="10"
+      ></textarea>
+      <label for="file">Txt File</label>
+      <input id="file" name="file" type="file" onchange="readText(event)"/>
 
-        <h3>Result is</h3>
-        <textarea name="result" id="result" cols="30" rows="10" disabled></textarea>
+      <h3 id="title-cipher">Affine Cipher</h3>
 
-        <h3 id="title-cipher">Affine Cipher</h3>
+      <input type="number" name="inputA" id="inputA" placeholder="a key" />
+      <input
+        type="number"
+        name="inputB"
+        id="inputB"
+        placeholder="b key"
+      />
 
-        <input type="number" name="inputA" id="inputA" placeholder="a key">
-        <input type="number" name="inputB" id="inputB" placeholder="b key"><br><br>
+      <h3>Result is</h3>
+      <textarea
+        name="result"
+        id="result"
+        cols="30"
+        rows="10"
+        disabled
+      ></textarea>
 
-        <button id="encrypt">Encrypt</button>
-        <button id="decrypt">Decrypt</button>
-
-    
+      <button id="encrypt">Encrypt</button>
+      <button id="decrypt">Decrypt</button>
     </div>
-     
-</body>
+
+    <script>
+      async function readText(event) {
+        const file = event.target.files.item(0);
+        const text = await file.text();
+        console.log(text)
+        document.getElementById("input_text").value = text;
+      }
+    </script>
+  </body>
 </html>
